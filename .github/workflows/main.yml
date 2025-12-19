@@ -43,7 +43,7 @@ jobs:
           name: dragon-txt
           path: dragon.txt
       - name: read the file
-        run: cat dragon.txt
+        run: cat dragon-txt
 
       
 

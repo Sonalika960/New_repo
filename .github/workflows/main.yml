@@ -4,18 +4,18 @@ jobs:
   my_first_job:
     runs-on: ubuntu-latest
     steps:
-      - name: my first print
-        run: echo " my first action job"
+      - name: checkout repo
+        uses: actions/checkout@v4
       
-      - name: list files
-        run: ls
+      - name: install cowsay program
+        run: sudo apt-get install cowsay -y
 
 
-      - name: read files
-        run: |
-          echo " hey messgae" > main.txt
-          cat main.txt
-        
+      - name: execute cowsay
+        run: cowsay -f dragon " run this" >> dragon.txt
+
+      - name: read file
+        run: cat dragon.txt
 
     
    

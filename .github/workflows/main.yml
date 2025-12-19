@@ -13,15 +13,12 @@ jobs:
       - name: execute cowsay
         run: cowsay -f dragon " run this" >> dragon.txt
 
-      - name: upload artifact
+      - name: upload artifact new
         uses: actions/upload-artifact@v4
         with:
           name: dragon-txt
           path: dragon.txt
 
-
-      
-  
 
   my_second_job_2:
    needs: my_first_job_1

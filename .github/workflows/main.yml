@@ -1,21 +1,51 @@
 name : my first github project
 on: push
 jobs:
-  my_first_job:
+  my_first_job_1:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
         uses: actions/checkout@v4
+
       
       - name: install cowsay program
         run: sudo apt-get install cowsay -y
-
-
       - name: execute cowsay
         run: cowsay -f dragon " run this" >> dragon.txt
 
-      - name: read file
+      - name: upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dragon-txt
+          path: dragon.txt
+
+
+      
+  
+
+  my_second_job_2:
+   needs: my_first_job_1
+   runs-on : ubuntu-latest
+   steps:
+    - name: Download packages
+      uses: actions/upload-artifact@v3
+      with:
+       name: dragon-txt
+       path: dragon.txt
+
+  my_third_job_3:
+    needs: my_second_job_2
+    runs-on : ubuntu-latest
+    steps:
+      - name: Dowload the  artifacts
+        uses: actions/dowload-artifact@v3
+        with:
+          name: dragon-txt
+          path: dragon.txt
+      - name: read the file
         run: cat dragon.txt
+
+      
 
     
    
